@@ -20,6 +20,13 @@ class CreateReportsTable extends Migration
             $table->float('value');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('from_id');
+            $table->index('to_id');
+            $table->index('value');
+            $table->index('created_at');
+            $table->index('updated_at');
+            $table->index('deleted_at');
         });
     }
 
