@@ -20,3 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'doctor'], function () {
+    Route::get('/dashboard', 'DoctorDashboardController@index');
+    Route::get('/patient/{patient}', 'DoctorDashboardController@patient');
+});
+
+Route::group(['prefix' => 'patient'], function () {
+    Route::get('/dashboard', 'PatientDashboardController@index');
+    Route::post('/report', 'PatientDashboardController@report');
+});
+
