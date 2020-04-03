@@ -16,7 +16,12 @@ class DoctorDashboardController extends Controller
 
     }
 
-    public function patient( $patientId )
+    public function getPatient( $patientId )
+    {
+
+    }
+
+    public function addPatient( Request $request )
     {
 
     }

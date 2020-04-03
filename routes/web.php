@@ -21,10 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::group(['prefix' => 'doctor'], function () {
     Route::get('/dashboard', 'DoctorDashboardController@index');
-    Route::get('/patient/{patient}', 'DoctorDashboardController@patient');
+    Route::get('/patient/{patient}', 'DoctorDashboardController@getPatient');
+    Route::post('/patient', 'DoctorDashboardController@addPatient');
 });
 
 Route::group(['prefix' => 'patient'], function () {
