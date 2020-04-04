@@ -20,6 +20,7 @@ class Report extends Model
     protected $fillable = [
         'from_id',
         'to_id',
+        'report_type_id',
         'value'
     ];
 }
