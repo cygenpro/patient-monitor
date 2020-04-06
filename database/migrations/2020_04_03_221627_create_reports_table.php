@@ -17,12 +17,14 @@ class CreateReportsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('from_id');
             $table->unsignedBigInteger('to_id');
+            $table->unsignedInteger('report_type_id');
             $table->float('value');
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('from_id');
             $table->index('to_id');
+            $table->index('report_type_id');
             $table->index('value');
             $table->index('created_at');
             $table->index('updated_at');

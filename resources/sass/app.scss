@@ -6,3 +6,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    -moz-transform: scale(1.2); /* for Firefox, default 1*/
+    zoom:120%; /* For Chrome, IE, default 100%*/
+}

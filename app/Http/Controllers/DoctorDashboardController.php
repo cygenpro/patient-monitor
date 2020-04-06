@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddPatientRequest;
 use Illuminate\Http\Request;
 
 class DoctorDashboardController extends Controller
 {
+    /**
+     * DoctorDashboardController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,7 +25,7 @@ class DoctorDashboardController extends Controller
 
     }
 
-    public function addPatient( Request $request )
+    public function addPatient( AddPatientRequest $request )
     {
 
     }
