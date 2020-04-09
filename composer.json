@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "authy/php": "^3.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -24,6 +25,14 @@
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
     },
+    "authors": [
+        {
+            "name": "Senik Hakobyan",
+            "email": "sen.hakobyan@gmail.com",
+            "homepage": "http://codebot.pro",
+            "role": "Developer"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
