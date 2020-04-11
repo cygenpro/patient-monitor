@@ -14,6 +14,8 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        // todo: add middlewares
     }
 
     public function index()

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class RequestController extends Controller
 {
+    public function __construct()
+    {
+        // todo: add middlewares
+    }
+
     public function accept()
     {
 

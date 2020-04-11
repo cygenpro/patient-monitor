@@ -25,6 +25,8 @@ class PatientController extends Controller
     public function __construct(PatientRepository $patientRepo)
     {
         $this->_patientRepo = $patientRepo;
+
+        // todo: add middlewares
     }
 
     /**
