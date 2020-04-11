@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Services\Role;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -68,7 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
-            'is_doctor' => isset($data['is_doctor']) && $data['is_doctor'] == 1 ? 1 : 0
+            'role_id' =>  isset($data['is_doctor']) && $data['is_doctor'] == 1 ? Role::DOCTOR_ID : Role::PATIENT_ID
         ]);
     }
 }

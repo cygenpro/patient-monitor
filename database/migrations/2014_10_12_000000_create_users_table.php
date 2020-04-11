@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->unique();
-            $table->boolean('is_doctor');
+            $table->unsignedInteger('role_id');
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
