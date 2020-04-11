@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ResendVerificationCodeRequested;
 use App\Http\Requests\VerifyPhoneRequest;
 use App\Services\VerificationCode;
 use Illuminate\Http\Request;
@@ -60,9 +61,16 @@ class PhoneVerificationController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function resend(Request $request)
     {
+        $user = $request->user();
 
+        event(new ResendVerificationCodeRequested($user));
+
+        return response()->json([
+            'message' => "New verification code has been sent to {$user->phone} phone number."
+        ], 201);
     }
 }

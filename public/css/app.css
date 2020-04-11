@@ -10889,3 +10889,11 @@ body {
   /* For Chrome, IE, default 100%*/
 }
 
+.text-link {
+  text-decoration: underline;
+}
+
+.text-link:hover {
+  cursor: pointer;
+}
+

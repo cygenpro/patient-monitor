@@ -6,7 +6,7 @@
             <h3 class="text-danger mb-4">Phone number verification</h3>
         </div>
         <div class="row justify-content-center">
-            <form action="{{ route('phone.verify.submit') }}" class="col-md-3 col" method="post">
+            <form action="{{ route('phone.verify.submit') }}" class="col-md-4 col" method="post">
                 @csrf
                 <phone-verify-input></phone-verify-input>
                 @foreach($errors->all() as $error)
@@ -15,8 +15,7 @@
                 </span>
                 @endforeach
                 <div class="form-row">
-                    <input type="submit" class="btn btn-outline-success" value="Verify">
-                    <button type="button" class="btn btn-link btn-sm text-info">Resend the verification code</button>
+                    <input type="submit" class="btn btn-outline-danger btn-block" value="Verify">
                 </div>
             </form>
         </div>
