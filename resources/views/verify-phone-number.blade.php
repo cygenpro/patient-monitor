@@ -6,7 +6,6 @@
             <h3 class="text-danger mb-4">Phone number verification</h3>
         </div>
         <div class="row justify-content-center">
-
             <form action="{{ route('phone.verify.submit') }}" class="col-md-3 col" method="post">
                 @csrf
                 <phone-verify-input></phone-verify-input>

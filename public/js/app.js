@@ -37370,6 +37370,7 @@ var staticRenderFns = [
       _c("input", {
         staticClass: "form-control",
         attrs: {
+          autofocus: "",
           type: "number",
           name: "code",
           id: "code",
