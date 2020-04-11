@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Doctor;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AddPatientRequest;
 use Illuminate\Http\Request;
 
-class DoctorDashboardController extends Controller
+class DashboardController extends Controller
 {
     /**
      * DoctorDashboardController constructor.
@@ -16,16 +17,6 @@ class DoctorDashboardController extends Controller
     }
 
     public function index()
-    {
-
-    }
-
-    public function getPatient( $patientId )
-    {
-
-    }
-
-    public function addPatient( AddPatientRequest $request )
     {
 
     }

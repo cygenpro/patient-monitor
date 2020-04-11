@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Patient;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportRequest;
 use Illuminate\Http\Request;
 
-class PatientDashboardController extends Controller
+class DashboardController extends Controller
 {
     /**
      * PatientDashboardController constructor.

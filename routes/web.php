@@ -26,13 +26,13 @@ Route::post('/verify-phone', 'PhoneVerificationController@verify')->name('phone.
 Route::post('/verify-phone/resend', 'PhoneVerificationController@resend')->name('phone.verify.resend');
 
 Route::group(['prefix' => 'doctor'], function () {
-    Route::get('/dashboard', 'DoctorDashboardController@index');
-    Route::get('/patient/{patient}', 'DoctorDashboardController@getPatient');
-    Route::post('/patient', 'DoctorDashboardController@addPatient');
+    Route::get('/dashboard', 'Doctor\DashboardController@index');
+    Route::get('/patient/{patient}', 'Doctor\PatientController@show');
+    Route::post('/assign-doctor', 'Doctor\PatientController@assignDoctor');
 });
 
 Route::group(['prefix' => 'patient'], function () {
-    Route::get('/dashboard', 'PatientDashboardController@index');
-    Route::post('/report', 'PatientDashboardController@report');
+    Route::get('/dashboard', 'Patient\DashboardController@index');
+    Route::post('/report', 'Patient\DashboardController@report');
 });
 

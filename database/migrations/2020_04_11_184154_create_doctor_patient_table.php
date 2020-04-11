@@ -17,6 +17,8 @@ class CreateDoctorPatientTable extends Migration
             $table->id();
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('patient_id');
+            $table->timestamp('accepted_at')->nullable();
+            $table->timestamp('declined_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

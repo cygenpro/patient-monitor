@@ -19,7 +19,9 @@ class DoctorPatient extends Model
      */
     protected $fillable = [
         'doctor_id',
-        'patient_id'
+        'patient_id',
+        'accepted_at',
+        'declined_at'
     ];
 
     /**

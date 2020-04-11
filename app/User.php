@@ -40,6 +40,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function patients()
+    {
+        return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
+    }
+
+    /**
      * @return bool
      */
     public function isDoctor(): bool

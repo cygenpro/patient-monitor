@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Doctor;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddPatientRequest extends FormRequest
+class AssignDoctorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
