@@ -33,6 +33,6 @@ Route::group(['prefix' => 'doctor'], function () {
 
 Route::group(['prefix' => 'patient'], function () {
     Route::get('/dashboard', 'Patient\DashboardController@index');
-    Route::post('/report', 'Patient\DashboardController@report');
+    Route::post('/report', 'Patient\ReportController@store');
 });
 

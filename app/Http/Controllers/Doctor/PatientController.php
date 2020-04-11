@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Doctor;
 use App\Events\PatientAssignedToDoctor;
 use App\Http\Requests\Doctor\AssignDoctorRequest;
 use App\Http\Controllers\Controller;
-use App\User;
-use Illuminate\Http\Request;
 use App\Repositories\PatientRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
