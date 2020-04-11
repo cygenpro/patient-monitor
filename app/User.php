@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Services\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,4 +38,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return bool
+     */
+    public function isDoctor(): bool
+    {
+        return $this->_role_id == Role::DOCTOR_ID;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPatient(): bool
+    {
+        return $this->_role_id == Role::PATIENT_ID;
+    }
 }
