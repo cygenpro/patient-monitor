@@ -52,7 +52,7 @@ class User extends Authenticatable
      */
     public function isDoctor(): bool
     {
-        return $this->_role_id == Role::DOCTOR_ID;
+        return $this->role_id == Role::DOCTOR_ID;
     }
 
     /**
@@ -60,6 +60,6 @@ class User extends Authenticatable
      */
     public function isPatient(): bool
     {
-        return $this->_role_id == Role::PATIENT_ID;
+        return $this->role_id == Role::PATIENT_ID;
     }
 }
