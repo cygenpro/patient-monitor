@@ -62,4 +62,13 @@ class User extends Authenticatable
     {
         return $this->role_id == Role::PATIENT_ID;
     }
+
+    /**
+     * @param int $patientId
+     * @return bool
+     */
+    public function hasPatient( int $patientId ): bool
+    {
+        return $this->patients()->where('patient_id', $patientId)->exists();
+    }
 }

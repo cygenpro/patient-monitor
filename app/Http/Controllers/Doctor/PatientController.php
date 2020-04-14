@@ -39,30 +39,38 @@ class PatientController extends Controller
      * @param AssignDoctorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function assignDoctor( AssignDoctorRequest $request )
+    public function addPatient( AssignDoctorRequest $request )
     {
         $patient = $this->_patientRepo->getByPhone( $request->input('phone') );
         $doctor  = Auth::user();
 
-        if( $patient )
-        {
-            try {
+        try {
+            if( $patient )
+            {
+                if($doctor->hasPatient($patient->id))
+                {
+                    return response()->json([
+                        'message' => "Patient already exists in your list."
+                    ], 422);
+                }
+
                 $doctor->patients()->create([
+                    'doctor_id'  => $doctor->id,
                     'patient_id' => $patient->id
                 ]);
 
                 event(new PatientAssignedToDoctor($patient, $doctor));
-
-                return response()->json([
-                    'message' => "Patient will appear in your list when the request accepted."
-                ], 201);
-            } catch (\Exception $exception) {
-                Log::error($exception->getTraceAsString());
             }
-        }
 
-        return response()->json([
-            'message' => "Patient doesn't exist"
-        ], 404);
+            return response()->json([
+                'message' => "We will send a notification if the patient exist in our system. Patient will be added to your list when the request accepted."
+            ], 200);
+        } catch (\Exception $exception) {
+            Log::error($exception->getTraceAsString());
+
+            return response()->json([
+                'message' => 'Something went wrong'
+            ], 501);
+        }
     }
 }
