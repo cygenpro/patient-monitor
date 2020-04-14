@@ -19,8 +19,18 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('phone-verify-input', require('./components/PhoneVerifyInput.vue').default);
+Vue.component('app', require('./components/App.vue').default);
+Vue.component('phone-verify-input', require('./components/PhoneVerifyInput.vue'));
+
+import VueRouter from 'vue-router';
+import {routes} from './routes';
+import {store} from './store/store';
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    routes
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +39,7 @@ Vue.component('phone-verify-input', require('./components/PhoneVerifyInput.vue')
  */
 
 const app = new Vue({
-    el: '#app',
+    el: '#content',
+    router,
+    store
 });
