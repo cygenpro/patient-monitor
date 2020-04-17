@@ -22,13 +22,14 @@ Route::post('/verify-phone', 'PhoneVerificationController@verify')->name('phone.
 Route::post('/verify-phone/resend', 'PhoneVerificationController@resend')->name('phone.verify.resend');
 
 Route::group(['prefix' => 'doctor'], function () {
-    Route::get('/dashboard', 'Doctor\DashboardController@index');
     Route::get('/patient/{patient}', 'Doctor\PatientController@show');
     Route::post('/add-patient', 'Doctor\PatientController@addPatient');
 });
 
 Route::group(['prefix' => 'patient'], function () {
-    Route::get('/dashboard', 'Patient\DashboardController@index');
     Route::post('/report', 'Patient\ReportController@store');
+    Route::get('/requests', 'Patient\RequestController@index');
+    Route::put('/requests/{requestId}/accept', 'Patient\RequestController@accept');
+    Route::put('/requests/{requestId}/decline', 'Patient\RequestController@decline');
 });
 
