@@ -41,8 +41,9 @@ class PatientController extends Controller
      */
     public function addPatient( AssignDoctorRequest $request )
     {
-        $patient = $this->_patientRepo->getByPhone( $request->input('phone') );
-        $doctor  = Auth::user();
+        $phoneNumber = $request->input('phone');
+        $patient = $this->_patientRepo->getByPhone( $phoneNumber );
+        $doctor = Auth::user();
 
         try {
             if( $patient )
@@ -59,14 +60,22 @@ class PatientController extends Controller
                     'patient_id' => $patient->id
                 ]);
 
-                event(new PatientAssignedToDoctor($patient, $doctor));
+                event(new PatientAssignedToDoctor($doctor, $patient));
+            }
+            elseif($phoneNumber == $doctor->phone)
+            {
+                // todo: investigate self-monitoring features
+                return response()->json([
+                    'message' => "You can not add yourself to your patient list."
+                ], 422);
             }
 
             return response()->json([
                 'message' => "We will send a notification if the patient exist in our system. Patient will be added to your list when the request accepted."
             ], 200);
         } catch (\Exception $exception) {
-            Log::error($exception->getTraceAsString());
+//            Log::error($exception->getMessage() . "\n" . $exception->getTraceAsString());
+            Log::error($exception->getMessage());
 
             return response()->json([
                 'message' => 'Something went wrong'

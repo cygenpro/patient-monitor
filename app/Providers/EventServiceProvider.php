@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\PatientAssignedToDoctor;
 use App\Events\ResendVerificationCodeRequested;
+use App\Listeners\NotifyAddPatientRequest;
 use App\Listeners\SendPhoneVerificationCode;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -25,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
             SendPhoneVerificationCode::class
         ],
         PatientAssignedToDoctor::class => [
-
+            NotifyAddPatientRequest::class
         ],
     ];
 
