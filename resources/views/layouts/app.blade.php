@@ -76,5 +76,12 @@
             @yield('content')
         </main>
     </div>
+    @auth()
+        <script !src="">
+            window.authUser = {
+                'is_doctor' : '{{ \Illuminate\Support\Facades\Auth::user()->isDoctor() }}'
+            }
+        </script>
+    @endauth
 </body>
 </html>
