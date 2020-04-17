@@ -1,8 +1,20 @@
 import AddPatient from "./components/Doctor/AddPatient";
-import App from "./components/App";
 import DoctorHome from "./components/Doctor/DoctorHome";
+import PatientHome from "./components/Patient/PatientHome";
 
-export const routes = [
-    {path: '/', component: DoctorHome},
-    {path: '/add-patient', component: AddPatient}
-];
+let routes = [];
+
+if( window.authUser ) {
+    if( window.authUser.is_doctor ) {
+        routes = [
+            {path: '/', component: DoctorHome},
+            {path: '/add-patient', component: AddPatient}
+        ];
+    } else {
+        routes = [
+            {path: '/', component: PatientHome},
+        ]
+    }
+}
+
+export {routes};
