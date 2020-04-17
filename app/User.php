@@ -44,7 +44,8 @@ class User extends Authenticatable
      */
     public function patients()
     {
-        return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
+        return $this->hasMany(DoctorPatient::class, 'patient_id', 'id')
+            ->where('role_id', Role::PATIENT_ID);
     }
 
     /**
