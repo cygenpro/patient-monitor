@@ -12,6 +12,11 @@ class RequestController extends Controller
         // todo: add middlewares
     }
 
+    public function index()
+    {
+
+    }
+
     public function accept()
     {
 

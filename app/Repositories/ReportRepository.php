@@ -2,20 +2,20 @@
 
 namespace App\Repositories;
 
-use App\Report;
+use App\Record;
 
 class ReportRepository
 {
     /**
-     * @var Report
+     * @var Record
      */
-    private Report $_model;
+    private Record $_model;
 
     /**
      * ReportRepository constructor.
-     * @param Report $report
+     * @param Record $report
      */
-    public function __construct(Report $report)
+    public function __construct(Record $report)
     {
         $this->_model = $report;
     }
@@ -23,9 +23,9 @@ class ReportRepository
     /**
      * @param array $data
      * @param int|null $reportId
-     * @return Report
+     * @return Record
      */
-    public function save(array $data, int $reportId = null): Report
+    public function save(array $data, int $reportId = null): Record
     {
         $model = $this->_model->find($reportId);
 

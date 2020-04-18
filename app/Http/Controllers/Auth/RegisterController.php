@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -54,6 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id' => ['required', Rule::in(Role::getIds())]
         ]);
     }
 
@@ -69,7 +71,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
-            'role_id' =>  isset($data['is_doctor']) && $data['is_doctor'] == 1 ? Role::DOCTOR_ID : Role::PATIENT_ID
+            'role_id' =>  $data['role_id']
         ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Events\PatientAssignedToDoctor;
 use App\Http\Requests\Doctor\AssignDoctorRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\PatientRepository;
+use App\Repositories\DoctorPatientRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -17,13 +18,19 @@ class PatientController extends Controller
     protected PatientRepository $_patientRepo;
 
     /**
+     * @var DoctorPatientRepository
+     */
+    protected DoctorPatientRepository $_doctorPatientRepo;
+
+    /**
      * PatientController constructor.
      * @param PatientRepository $patientRepo
+     * @param DoctorPatientRepository $doctorPatientRepo
      */
-    public function __construct(PatientRepository $patientRepo)
+    public function __construct(PatientRepository $patientRepo, DoctorPatientRepository $doctorPatientRepo)
     {
         $this->_patientRepo = $patientRepo;
-
+        $this->_doctorPatientRepo = $doctorPatientRepo;
         // todo: add middlewares
     }
 
@@ -55,7 +62,7 @@ class PatientController extends Controller
                     ], 422);
                 }
 
-                $doctor->patients()->create([
+                $this->_doctorPatientRepo->save([
                     'doctor_id'  => $doctor->id,
                     'patient_id' => $patient->id
                 ]);
