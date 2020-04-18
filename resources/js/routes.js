@@ -8,7 +8,8 @@ if( window.authUser ) {
     if( window.authUser.is_doctor ) {
         routes = [
             {path: '/', component: DoctorHome},
-            {path: '/add-patient', component: AddPatient}
+            {path: '/add-patient', component: AddPatient},
+            {path: '/patient/:id', component: DoctorHome}
         ];
     } else {
         routes = [

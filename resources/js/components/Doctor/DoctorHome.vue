@@ -7,7 +7,7 @@
 
 <script>
     import PatientList from "./PatientList";
-    import PatientRecords from "./PatientReports";
+    import PatientRecords from "./PatientRecords";
 
     export default {
         name: "DoctorHome",
