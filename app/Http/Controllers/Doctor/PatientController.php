@@ -7,6 +7,7 @@ use App\Http\Requests\Doctor\AssignDoctorRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\PatientRepository;
 use App\Repositories\DoctorPatientRepository;
+use App\Repositories\RecordRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -23,23 +24,39 @@ class PatientController extends Controller
     protected DoctorPatientRepository $_doctorPatientRepo;
 
     /**
+     * @var RecordRepository
+     */
+    protected RecordRepository $_recordsRepo;
+
+    /**
      * PatientController constructor.
      * @param PatientRepository $patientRepo
      * @param DoctorPatientRepository $doctorPatientRepo
+     * @param RecordRepository $recordRepo
      */
-    public function __construct(PatientRepository $patientRepo, DoctorPatientRepository $doctorPatientRepo)
+    public function __construct(
+        PatientRepository $patientRepo,
+        DoctorPatientRepository $doctorPatientRepo,
+        RecordRepository $recordRepo
+    )
     {
         $this->_patientRepo = $patientRepo;
         $this->_doctorPatientRepo = $doctorPatientRepo;
+        $this->_recordsRepo = $recordRepo;
         // todo: add middlewares
     }
 
     /**
      * @param $patientId
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show( $patientId )
     {
+        $records = $this->_recordsRepo->getByDoctorAndPatientIds( Auth::id(), $patientId );
 
+        return response()->json([
+            'records' => $records
+        ], 200);
     }
 
     /**

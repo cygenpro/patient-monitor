@@ -17,15 +17,23 @@ class CreateRecordsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('from_id');
             $table->unsignedBigInteger('to_id');
-            $table->unsignedInteger('record_type_id');
-            $table->float('value');
+            $table->float('temperature');
+            $table->boolean('has_cough')->default(false);
+            $table->boolean('has_hard_breath')->default(false);
+            $table->boolean('has_sore_throat')->default(false);
+            $table->boolean('has_diarrhea')->default(false);
+            $table->boolean('has_tiredness')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('from_id');
             $table->index('to_id');
-            $table->index('record_type_id');
-            $table->index('value');
+            $table->index('temperature');
+            $table->index('has_cough');
+            $table->index('has_hard_breath');
+            $table->index('has_sore_throat');
+            $table->index('has_diarrhea');
+            $table->index('has_tiredness');
             $table->index('created_at');
             $table->index('updated_at');
             $table->index('deleted_at');

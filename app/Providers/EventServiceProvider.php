@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendPhoneVerificationCode::class
+//            SendPhoneVerificationCode::class
         ],
         ResendVerificationCodeRequested::class => [
             SendPhoneVerificationCode::class

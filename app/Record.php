@@ -12,7 +12,7 @@ class Record extends Model
     /**
      * @var string
      */
-    protected $table = 'reports';
+    protected $table = 'records';
 
     /**
      * @var array
@@ -20,7 +20,29 @@ class Record extends Model
     protected $fillable = [
         'from_id',
         'to_id',
-        'report_type_id',
-        'value'
+        'temperature',
+        'has_cough',
+        'has_hard_breath',
+        'has_sore_throat',
+        'has_diarrhea',
+        'has_tiredness'
     ];
+
+    /**
+     * @param $date
+     * @return false|string
+     */
+    public function getCreatedAtAttribute($date)
+    {
+        return date('m/d/Y H:i', strtotime($date));
+    }
+
+    /**
+     * @param $date
+     * @return false|string
+     */
+    public function getUpdatedAtAttribute($date)
+    {
+        return date('m/d/Y H:i', strtotime($date));
+    }
 }

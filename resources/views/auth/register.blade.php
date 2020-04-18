@@ -29,11 +29,11 @@
                             <label class="col-md-4 col-form-label text-md-right">I am a</label>
                             <div class="col-md-6 mt-1">
                                 <div class="form-check form-check-inline align-middle">
-                                    <input class="form-check-input" type="radio" id="patient-radio" name="role_id" value="2" required>
+                                    <input class="form-check-input" type="radio" id="patient-radio" name="role_id" value="2" {{ old('role_id') == 2 ? 'checked' : '' }} required>
                                     <label class="form-check-label" for="patient-radio">Patient</label>
                                 </div>
                                 <div class="form-check form-check-inline align-middle">
-                                    <input class="form-check-input" type="radio" id="doctor-radio"  name="role_id" value="1">
+                                    <input class="form-check-input" type="radio" id="doctor-radio"  name="role_id" value="1" {{ old('role_id') == 1 ? 'checked' : '' }}>
                                     <label class="form-check-label" for="doctor-radio">Doctor</label>
                                 </div>
 

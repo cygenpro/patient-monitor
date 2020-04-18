@@ -39,7 +39,7 @@ const router = new VueRouter({
  */
 
 const app = new Vue({
-    el: '#content',
+    el: '#app',
     router,
     store
 });
