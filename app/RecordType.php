@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ReportType extends Model
+class RecordType extends Model
 {
     /**
      * @var string
@@ -19,8 +19,8 @@ class ReportType extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function reports()
+    public function records()
     {
-        return $this->hasMany(Report::class);
+        return $this->hasMany(Record::class);
     }
 }

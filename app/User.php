@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'phone', 'phone_verified_at', 'password', 'is_doctor'
+        'name', 'phone', 'phone_verified_at', 'password', 'role_id'
     ];
 
     /**
@@ -44,8 +44,17 @@ class User extends Authenticatable
      */
     public function patients()
     {
+        return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function doctors()
+    {
         return $this->hasMany(DoctorPatient::class, 'doctor_id', 'id');
     }
+
 
     /**
      * @return bool
