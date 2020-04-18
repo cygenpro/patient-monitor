@@ -55,7 +55,6 @@ class User extends Authenticatable
         return $this->hasMany(DoctorPatient::class, 'doctor_id', 'id');
     }
 
-
     /**
      * @return bool
      */
