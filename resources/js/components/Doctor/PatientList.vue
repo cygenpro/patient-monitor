@@ -1,22 +1,23 @@
 <template>
     <div class="col-3">
         <h3>Patient List
-            <router-link
+            <RouterLink
                 to="/add-patient"
             >
                 <button class="btn btn-outline-success btn-sm mb-3 float-right">Add New Patient <i class="fa fa-plus"></i></button>
-            </router-link>
+            </RouterLink>
         </h3>
         <div class="clearfix"></div>
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                Cras justo odio
-                <span class="badge badge-primary badge-pill">2</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+        <ul v-if="patients.length" class="list-group list-unstyled">
+            <li v-bind:key="patient.id" v-for="patient in patients" class="list-group-item list-group-item-action cursor-pointer p-0">
+                <RouterLink :to="'/patient/'+patient.id" class="d-block p-2 text-secondary">
+                    {{ patient.name }}
+                </RouterLink>
+            </li>
+
+        </ul>
+        <div v-else>
+            <p class="text-center">No patients added yet.</p>
         </div>
     </div>
 </template>
@@ -24,6 +25,11 @@
 <script>
     export default {
         name: "PatientList",
+        computed: {
+            patients() {
+                return this.$store.getters.getPatients
+            }
+        }
     }
 </script>
 

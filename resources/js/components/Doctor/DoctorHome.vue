@@ -8,6 +8,7 @@
 <script>
     import PatientList from "./PatientList";
     import PatientRecords from "./PatientReports";
+
     export default {
         name: "DoctorHome",
         components: {PatientRecords, PatientList}

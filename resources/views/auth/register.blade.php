@@ -26,6 +26,26 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">I am a</label>
+                            <div class="col-md-6 mt-1">
+                                <div class="form-check form-check-inline align-middle">
+                                    <input class="form-check-input" type="radio" id="patient-radio" name="role_id" value="2" required>
+                                    <label class="form-check-label" for="patient-radio">Patient</label>
+                                </div>
+                                <div class="form-check form-check-inline align-middle">
+                                    <input class="form-check-input" type="radio" id="doctor-radio"  name="role_id" value="1">
+                                    <label class="form-check-label" for="doctor-radio">Doctor</label>
+                                </div>
+
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">

@@ -20,7 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('app', require('./components/App.vue').default);
-Vue.component('phone-verify-input', require('./components/PhoneVerifyInput.vue'));
+Vue.component('phone-verify-input', require('./components/PhoneVerifyInput.vue').default);
 
 import VueRouter from 'vue-router';
 import {routes} from './routes';
