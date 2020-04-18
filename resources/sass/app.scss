@@ -15,6 +15,15 @@ body {
     zoom:120%; /* For Chrome, IE, default 100%*/
 }
 
+a.active,
+a.active:hover,
+a.active:focus {
+    color: #fff !important;
+    background-color: #3490dc;
+    border-color: #007bff;
+    text-decoration: none;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
