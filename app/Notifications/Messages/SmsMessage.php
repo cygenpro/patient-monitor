@@ -4,40 +4,40 @@ namespace App\Notifications\Messages;
 
 class SmsMessage
 {
-    private $_recipient;
-    private $_content;
+    private string $_recipient;
+    private string $_content;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getRecipient()
+    public function getRecipient(): string
     {
         return $this->_recipient;
     }
 
     /**
-     * @param mixed $recipient
-     * @return SmsMessage
+     * @param string $recipient
+     * @return $this
      */
-    public function setRecipient($recipient)
+    public function setRecipient(string $recipient)
     {
         $this->_recipient = $recipient;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->_content;
     }
 
     /**
-     * @param mixed $content
-     * @return SmsMessage
+     * @param string $content
+     * @return $this
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->_content = $content;
         return $this;
