@@ -10,11 +10,6 @@
 // Font Awesome
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
-body {
-    -moz-transform: scale(1.2); /* for Firefox, default 1*/
-    zoom:120%; /* For Chrome, IE, default 100%*/
-}
-
 a.active,
 a.active:hover,
 a.active:focus {
@@ -26,4 +21,8 @@ a.active:focus {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.table-responsive {
+    min-height: 300px;
 }
