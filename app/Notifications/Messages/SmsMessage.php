@@ -4,7 +4,13 @@ namespace App\Notifications\Messages;
 
 class SmsMessage
 {
+    /**
+     * @var string
+     */
     private string $_recipient;
+    /**
+     * @var string
+     */
     private string $_content;
 
     /**
