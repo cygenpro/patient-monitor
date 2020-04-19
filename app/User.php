@@ -44,7 +44,7 @@ class User extends Authenticatable
      */
     public function patients()
     {
-        return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
+        return $this->hasMany(DoctorPatient::class, 'doctor_id', 'id');
     }
 
     /**
@@ -52,7 +52,7 @@ class User extends Authenticatable
      */
     public function doctors()
     {
-        return $this->hasMany(DoctorPatient::class, 'doctor_id', 'id');
+        return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
     }
 
     /**

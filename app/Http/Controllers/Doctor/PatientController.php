@@ -26,7 +26,7 @@ class PatientController extends Controller
     /**
      * @var RecordRepository
      */
-    protected RecordRepository $_recordsRepo;
+    protected RecordRepository $_recordRepo;
 
     /**
      * PatientController constructor.
@@ -42,7 +42,7 @@ class PatientController extends Controller
     {
         $this->_patientRepo = $patientRepo;
         $this->_doctorPatientRepo = $doctorPatientRepo;
-        $this->_recordsRepo = $recordRepo;
+        $this->_recordRepo = $recordRepo;
         // todo: add middlewares
     }
 
@@ -52,7 +52,7 @@ class PatientController extends Controller
      */
     public function show( $patientId )
     {
-        $records = $this->_recordsRepo->getByDoctorAndPatientIds( Auth::id(), $patientId );
+        $records = $this->_recordRepo->getByDoctorAndPatientIds( Auth::id(), $patientId );
 
         return response()->json([
             'records' => $records
@@ -98,7 +98,6 @@ class PatientController extends Controller
                 'message' => "We will send a notification if the patient exist in our system. Patient will be added to your list when the request accepted."
             ], 200);
         } catch (\Exception $exception) {
-//            Log::error($exception->getMessage() . "\n" . $exception->getTraceAsString());
             Log::error($exception->getMessage());
 
             return response()->json([

@@ -2,19 +2,17 @@
     <div>
         <div class="row mb-4">
             <patient-list></patient-list>
-            <patient-records></patient-records>
+            <patient-records :no_record_message="'Please select a patient from your patient list to view his or her records.'"></patient-records>
         </div>
         <div class="row justify-content-center">
             <line-chart
                 :label="'Temperature'"
                 :labels="$store.getters.getChartData.temperature.labels"
-                :values="$store.getters.getChartData.temperature.values"
-            >
+                :values="$store.getters.getChartData.temperature.values">
             </line-chart>
             <polar-chart
                 :labels="$store.getters.getChartData.symptoms.labels"
-                :values="$store.getters.getChartData.symptoms.values"
-            >
+                :values="$store.getters.getChartData.symptoms.values">
             </polar-chart>
         </div>
     </div>

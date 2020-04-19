@@ -3,7 +3,6 @@
         <table class="table table-striped text-center" id="records-table">
             <thead class="bg-success text-light">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Temperature</th>
                     <th scope="col">Cough</th>
                     <th scope="col">Hard Breath</th>
@@ -15,7 +14,6 @@
             </thead>
             <tbody v-if="records.length">
                 <tr v-for="record in records">
-                    <td>#{{ record.id }}</td>
                     <td><span :class="record.temperature > 37 ? 'text-danger' :'text-success'"><strong>{{ record.temperature }}</strong></span></td>
                     <td><i :class="!record.has_cough ? 'fa fa-minus text-success' : 'fa fa-plus text-danger'"></i></td>
                     <td><i :class="!record.has_hard_breath ? 'fa fa-minus text-success' : 'fa fa-plus text-danger'"></i></td>
@@ -28,7 +26,7 @@
             <tbody v-else>
                 <tr>
                     <td colspan="8" class="text-secondary">
-                        Please select a patient from your patient list to view his or her records. <i class="fa fa-exclamation text-danger"></i>
+                        {{ this.no_record_message }} <i class="fa fa-exclamation text-danger"></i>
                     </td>
                 </tr>
             </tbody>
@@ -39,6 +37,7 @@
 <script>
     export default {
         name: "PatientRecords",
+        props: ['no_record_message'],
         computed: {
             records() {
                 return this.$store.getters.getRecords

@@ -6,11 +6,15 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         patients: window.authUser.patients,
+        doctors: window.authUser.doctors,
         records: []
     },
     getters: {
         getPatients: state => {
             return JSON.parse(state.patients)
+        },
+        getDoctors: state => {
+            return JSON.parse(state.doctors)
         },
         getRecords: state => {
             return state.records;
@@ -72,11 +76,23 @@ export const store = new Vuex.Store({
     mutations: {
         setRecords: (state, payload) => {
             state.records = payload;
-        }
+        },
+        setPatients: (state, payload) => {
+            state.patients = payload;
+        },
+        setDoctors: (state, payload) => {
+            state.doctors = payload;
+        },
     },
     actions: {
         setRecords: ({commit}, payload) => {
             commit('setRecords', payload.records);
+        },
+        setPatients: ({commit}, payload) => {
+            commit('setPatients', payload.patients);
+        },
+        setDoctors: ({commit}, payload) => {
+            commit('setDoctors', payload.doctors);
         }
     }
 });

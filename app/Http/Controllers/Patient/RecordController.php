@@ -3,34 +3,33 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Patient\StoreReportRequest;
-use Illuminate\Http\Request;
-use App\Repositories\ReportRepository;
+use App\Http\Requests\Patient\StoreRecordRequest;
+use App\Repositories\RecordRepository;
 use Illuminate\Support\Facades\Log;
 
-class ReportController extends Controller
+class RecordController extends Controller
 {
     /**
-     * @var ReportRepository
+     * @var RecordRepository
      */
-    protected ReportRepository $_reportRepo;
+    protected RecordRepository $_recordRepo;
 
     /**
      * ReportController constructor.
-     * @param ReportRepository $reportRepository
+     * @param RecordRepository $recordRepository
      */
-    public function __construct(ReportRepository $reportRepository)
+    public function __construct(RecordRepository $recordRepository)
     {
-        $this->_reportRepo = $reportRepository;
+        $this->_recordRepo = $recordRepository;
 
-        // todo: add middlewares
+        // todo: add middlewares....
     }
 
     /**
-     * @param StoreReportRequest $request
+     * @param StoreRecordRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store( StoreReportRequest $request )
+    public function store(StoreRecordRequest $request )
     {
         $patientId = $request->user()->id;
         $doctorId = $request->input('doctor_id');
@@ -38,7 +37,7 @@ class ReportController extends Controller
         $value = $request->input('value');
 
         try {
-            $this->_reportRepo->save([
+            $this->_recordRepo->save([
                 'from_id' => $patientId,
                 'to_id' => $doctorId,
                 'report_type_id' => $reportTypeId,

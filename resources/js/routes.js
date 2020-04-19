@@ -14,6 +14,7 @@ if( window.authUser ) {
     } else {
         routes = [
             {path: '/', component: PatientHome},
+            {path: '/doctor/:id', component: PatientHome}
         ]
     }
 }

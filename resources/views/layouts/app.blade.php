@@ -81,6 +81,7 @@
             window.authUser = {
                 'is_doctor' : '{{ \Illuminate\Support\Facades\Auth::user()->isDoctor() }}',
                 'patients': '{!! \App\Services\User::getPatientUsersByDoctorId(\Illuminate\Support\Facades\Auth::id(), true)->toJson() !!}',
+                'doctors': '{!! \App\Services\User::getDoctorUsersByPatientId(\Illuminate\Support\Facades\Auth::id(), true)->toJson() !!}',
             };
         </script>
     @endauth

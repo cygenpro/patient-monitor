@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Services\Role;
 use App\User;
 use Illuminate\Support\Collection;
-use function foo\func;
+use Illuminate\Database\Eloquent\Builder;
 
 class PatientRepository extends UserRepository
 {
@@ -18,7 +18,10 @@ class PatientRepository extends UserRepository
         parent::__construct($user);
     }
 
-    public function query()
+    /**
+     * @return Builder
+     */
+    public function query(): Builder
     {
         return $this->getUserModel()
             ->where('role_id', Role::PATIENT_ID);
@@ -41,10 +44,10 @@ class PatientRepository extends UserRepository
      * @param bool $isAccepted
      * @return mixed
      */
-    public function getPatientsByDoctorId(int $doctorId, bool $isAccepted = false)
+    public function getPatientsByDoctorId(int $doctorId, bool $isAccepted = false): Collection
     {
         return $this->query()
-            ->whereHas('patients', function ($q) use ($doctorId, $isAccepted) {
+            ->whereHas('doctors', function ($q) use ($doctorId, $isAccepted) {
                 $q->where('doctor_id', $doctorId);
 
                 if( $isAccepted ) {
