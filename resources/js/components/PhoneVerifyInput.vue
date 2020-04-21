@@ -26,12 +26,10 @@
 
                 axios.post('/verify-phone/resend')
                     .then((response) => {
-                        console.log('should now see the message')
-                        console.log(response);
                         this.message = response.data.message;
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        // console.log(error);
                     });
             }
         }

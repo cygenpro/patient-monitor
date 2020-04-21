@@ -1,8 +1,8 @@
 <template>
     <div class="col-2">
         <h3>Doctors
-            <RouterLink to="/new-record">
-                <button class="btn btn-outline-success mb-3 float-right">Submit New Record <i class="fa fa-plus"></i></button>
+            <RouterLink :to="this.newRecordRoute()">
+                <button class="btn btn-outline-success mb-3 float-right">New Record <i class="fa fa-plus"></i></button>
             </RouterLink>
         </h3>
         <div class="clearfix"></div>
@@ -22,6 +22,22 @@
 <script>
     export default {
         name: "DoctorList",
+        props: ['chosen_doctor'],
+        data() {
+            return {
+                newRecordRoute: function () {
+                    let route = '/new-record';
+
+                    if( this.chosen_doctor ) {
+                        let params = '?doctor_id=' + this.chosen_doctor;
+
+                        route += params;
+                    }
+
+                    return route;
+                }
+            }
+        },
         computed: {
             doctors() {
                 return this.$store.getters.getDoctors

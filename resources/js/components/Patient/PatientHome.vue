@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row mb-4">
-            <doctor-list></doctor-list>
+            <doctor-list :chosen_doctor="$route.params.id"></doctor-list>
             <patient-records :no_record_message="'Please select a doctor from your doctors list to view reported records.'">
             </patient-records>
         </div>
@@ -28,7 +28,7 @@
     export default {
         name: "PatientHome",
         components: {PolarChart, LineChart, PatientRecords, DoctorList},
-        watch:{
+        watch: {
             $route (to, from){
                 this.updateRecords(to.params.id);
             }

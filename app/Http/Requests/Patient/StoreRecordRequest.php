@@ -24,13 +24,8 @@ class StoreRecordRequest extends FormRequest
     public function rules()
     {
         return [
-            'to_id' => 'required|integer',
+            'doctors' => 'required',
             'temperature' => 'required|numeric',
-            'has_cough' => 'required|integer',
-            'has_hard_breath' => 'required|integer',
-            'has_sore_throat' => 'required|integer',
-            'has_diarrhea' => 'required|integer',
-            'has_tiredness' => 'required|integer',
         ];
     }
 }

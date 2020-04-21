@@ -1,8 +1,11 @@
 <?php
-
+// Twilio Notify
+// Alexa skill
+// RPi realtime monitoring
 namespace App\Providers;
 
 use App\Events\PatientAssignedToDoctor;
+use App\Events\RecordSubmitted;
 use App\Events\ResendVerificationCodeRequested;
 use App\Listeners\NotifyAddPatientRequest;
 use App\Listeners\SendPhoneVerificationCode;
@@ -20,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-//            SendPhoneVerificationCode::class
+            SendPhoneVerificationCode::class
         ],
         ResendVerificationCodeRequested::class => [
             SendPhoneVerificationCode::class
@@ -28,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         PatientAssignedToDoctor::class => [
             NotifyAddPatientRequest::class
         ],
+        RecordSubmitted::class => [
+
+        ]
     ];
 
     /**

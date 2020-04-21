@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Patient;
 
+use App\Events\RecordSubmitted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\StoreRecordRequest;
 use App\Repositories\RecordRepository;
+use App\Services\Record;
 use Illuminate\Support\Facades\Log;
 
 class RecordController extends Controller
@@ -31,28 +33,30 @@ class RecordController extends Controller
      */
     public function store(StoreRecordRequest $request )
     {
-        $patientId = $request->user()->id;
-        $doctorId = $request->input('doctor_id');
-        $reportTypeId = $request->input('report_type_id');
-        $value = $request->input('value');
+        $request->merge(['patient_id' => $request->user()->id]);
 
         try {
-            $this->_recordRepo->save([
-                'from_id' => $patientId,
-                'to_id' => $doctorId,
-                'report_type_id' => $reportTypeId,
-                'value' => $value
-            ]);
+            $recordsToSubmit = Record::mapRequest($request->all());
+            $submittedRecords = [];
+
+            foreach ($recordsToSubmit as $item)
+            {
+                $record = $this->_recordRepo->save($item);
+                $submittedRecords[] = $record->toArray();
+            }
+
+            event(new RecordSubmitted($submittedRecords));
 
             return response()->json([
-                'message' => 'Report submitted successfully.'
+                'records' => $submittedRecords,
+                'message' => 'Record submitted successfully.'
             ], 201);
 
         } catch (\Exception $exception) {
             Log::error($exception->getTraceAsString());
 
             return response()->json([
-                'message' => 'Something went wrong. Please contact support.'
+                'message' => $exception->getMessage()
             ], 500);
         }
     }

@@ -1,8 +1,8 @@
 <template>
     <div class="col-2">
-        <h3>Patient List
+        <h3>Your Patients
             <RouterLink to="/add-patient">
-                <button class="btn btn-outline-success btn-sm mb-3 float-right">Add New Patient <i class="fa fa-plus"></i></button>
+                <button class="btn btn-outline-success  mb-3 float-right">Add New <i class="fa fa-plus"></i></button>
             </RouterLink>
         </h3>
         <div class="clearfix"></div>

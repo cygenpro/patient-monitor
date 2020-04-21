@@ -86,7 +86,7 @@
         </script>
     @endauth
     <footer class="text-center">
-        {{ config('app.name', 'Laravel') }} &copy; {{ date('Y') }}
+        {{ config('app.name', 'Laravel') }} &copy; 2020
     </footer>
 </body>
 </html>
