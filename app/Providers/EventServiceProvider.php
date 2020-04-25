@@ -4,6 +4,8 @@
 // RPi realtime monitoring
 namespace App\Providers;
 
+use App\Events\DoctorRequestAccepted;
+use App\Events\DoctorRequestDeclined;
 use App\Events\PatientAssignedToDoctor;
 use App\Events\RecordSubmitted;
 use App\Events\ResendVerificationCodeRequested;
@@ -32,6 +34,12 @@ class EventServiceProvider extends ServiceProvider
             NotifyAddPatientRequest::class
         ],
         RecordSubmitted::class => [
+
+        ],
+        DoctorRequestAccepted::class => [
+
+        ],
+        DoctorRequestDeclined::class => [
 
         ]
     ];

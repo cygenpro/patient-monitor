@@ -29,8 +29,7 @@ Route::group(['prefix' => 'doctor'], function () {
 Route::group(['prefix' => 'patient'], function () {
     Route::get('/doctor/{doctor}', 'Patient\DoctorController@show');
     Route::post('/record', 'Patient\RecordController@store');
-    Route::get('/requests', 'Patient\RequestController@index');
-    Route::put('/requests/{requestId}/accept', 'Patient\RequestController@accept');
-    Route::put('/requests/{requestId}/decline', 'Patient\RequestController@decline');
+    Route::get('/pending-request', 'Patient\RequestController@pendingRequest');
+    Route::put('/request/accept', 'Patient\RequestController@accept');
+    Route::put('/request/decline', 'Patient\RequestController@decline');
 });
-

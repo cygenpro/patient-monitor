@@ -29,7 +29,7 @@ class DoctorPatient extends Model
      */
     public function doctor()
     {
-        return $this->belongsTo(User::class, 'id', 'doctor_id');
+        return $this->belongsTo(User::class, 'doctor_id', 'id');
     }
 
     /**
