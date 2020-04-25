@@ -5,16 +5,17 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        patients: window.authUser.patients,
-        doctors: window.authUser.doctors,
-        records: []
+        patients: JSON.parse(window.authUser.patients),
+        doctors: JSON.parse(window.authUser.doctors),
+        records: [],
+        doctorRequest: null
     },
     getters: {
         getPatients: state => {
-            return JSON.parse(state.patients)
+            return state.patients;
         },
         getDoctors: state => {
-            return JSON.parse(state.doctors)
+            return state.doctors;
         },
         getRecords: state => {
             return state.records;
@@ -71,28 +72,37 @@ export const store = new Vuex.Store({
             data.symptoms.values = values;
 
             return data;
+        },
+        getDoctorRequest: state => {
+            return state.doctorRequest;
         }
     },
     mutations: {
         setRecords: (state, payload) => {
             state.records = payload;
         },
-        setPatients: (state, payload) => {
-            state.patients = payload;
+        addPatient: (state, payload) => {
+            state.patients.unshift(payload);
         },
-        setDoctors: (state, payload) => {
-            state.doctors = payload;
+        addDoctor: (state, payload) => {
+           state.doctors.unshift(payload);
         },
+        setDoctorRequest: (state, payload) => {
+            state.doctorRequest = payload;
+        }
     },
     actions: {
         setRecords: ({commit}, payload) => {
             commit('setRecords', payload.records);
         },
-        setPatients: ({commit}, payload) => {
-            commit('setPatients', payload.patients);
+        addPatient: ({commit}, payload) => {
+            commit('addPatient', payload.patient);
         },
-        setDoctors: ({commit}, payload) => {
-            commit('setDoctors', payload.doctors);
-        }
+        addDoctor: ({commit}, payload) => {
+            commit('addDoctor', payload.doctor);
+        },
+        setDoctorRequest: ({commit}, payload) => {
+            commit('setDoctorRequest', payload.doctorRequest);
+        },
     }
 });

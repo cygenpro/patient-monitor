@@ -7,7 +7,7 @@
         <p class="text-info">
             {{ message }}
         </p>
-        <input autofocus type="number" class="form-control" name="code" id="code" autocomplete="off" min="0" required>
+        <input autofocus type="number" class="form-control text-center" name="code" id="code" autocomplete="off" min="0" required>
     </div>
 </template>
 

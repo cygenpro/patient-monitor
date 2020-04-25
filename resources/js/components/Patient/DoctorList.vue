@@ -1,11 +1,12 @@
 <template>
     <div class="col-2">
+        <doctor-request></doctor-request>
         <h3>Doctors
-            <RouterLink :to="this.newRecordRoute()">
+            <RouterLink v-if="doctors.length" :to="this.newRecordRoute()">
                 <button class="btn btn-outline-success mb-3 float-right">New Record <i class="fa fa-plus"></i></button>
             </RouterLink>
         </h3>
-        <div class="clearfix"></div>
+        <div v-if="doctors.length" class="clearfix"></div>
         <ul v-if="doctors.length" class="list-group list-unstyled">
             <li v-bind:key="doctor.id" v-for="doctor in doctors" class="list-group-item list-group-item-action cursor-pointer p-0">
                 <RouterLink :to="'/doctor/'+doctor.id" class="d-block p-2 text-secondary" active-class="active">
@@ -20,8 +21,10 @@
 </template>
 
 <script>
+    import DoctorRequest from "./DoctorRequest";
     export default {
         name: "DoctorList",
+        components: {DoctorRequest},
         props: ['chosen_doctor'],
         data() {
             return {
