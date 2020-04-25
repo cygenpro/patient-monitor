@@ -39,8 +39,8 @@ export const store = new Vuex.Store({
             };
 
             state.records.forEach(function(item, index) {
-               data.temperature.labels.push(item.created_at);
-               data.temperature.values.push(item.temperature);
+               data.temperature.labels.unshift(item.created_at);
+               data.temperature.values.unshift(item.temperature);
 
                if(item.has_cough) {
                    data.symptoms.values.cough++;
