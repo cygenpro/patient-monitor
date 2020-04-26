@@ -25,6 +25,7 @@
     import LineChart from "../Charts/LineChart";
     import PolarChart from "../Charts/PolarChart";
     import axios from "axios";
+
     export default {
         name: "PatientHome",
         components: {PolarChart, LineChart, PatientRecords, DoctorList},
