@@ -23,6 +23,16 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('name');
+            $table->index('phone');
+            $table->index('role_id');
+            $table->index('phone_verified_at');
+            $table->index('password');
+            $table->index('remember_token');
+            $table->index('created_at');
+            $table->index('updated_at');
+            $table->index('deleted_at');
         });
     }
 

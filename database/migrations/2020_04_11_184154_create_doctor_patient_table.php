@@ -21,6 +21,20 @@ class CreateDoctorPatientTable extends Migration
             $table->timestamp('declined_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('doctor_id')
+                ->references('id')->on('users');
+
+            $table->foreign('patient_id')
+                ->references('id')->on('users');
+
+            $table->index('doctor_id');
+            $table->index('patient_id');
+            $table->index('accepted_at');
+            $table->index('declined_at');
+            $table->index('created_at');
+            $table->index('updated_at');
+            $table->index('deleted_at');
         });
     }
 

@@ -26,6 +26,12 @@ class CreateRecordsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('from_id')
+                ->references('id')->on('users');
+
+            $table->foreign('to_id')
+                ->references('id')->on('users');
+
             $table->index('from_id');
             $table->index('to_id');
             $table->index('temperature');

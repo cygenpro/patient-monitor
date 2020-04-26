@@ -18,6 +18,14 @@ class CreateVerificationCodesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('code');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users');
+
+            $table->index('user_id');
+            $table->index('code');
+            $table->index('created_at');
+            $table->index('updated_at');
         });
     }
 
