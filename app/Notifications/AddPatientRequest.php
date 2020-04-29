@@ -38,7 +38,7 @@ class AddPatientRequest extends Notification
      * @param $notifiable
      * @return SmsMessage
      */
-    public function toTwilioSms($notifiable)
+    public function toTwilioSms($notifiable): SmsMessage
     {
         return (new SmsMessage())
             ->setContent("Doctor wants to add you to his or her patient list. Please sign in to your account to accept the request.")

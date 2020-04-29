@@ -8,6 +8,7 @@ class SmsMessage
      * @var string
      */
     private string $_recipient;
+
     /**
      * @var string
      */
@@ -25,7 +26,7 @@ class SmsMessage
      * @param string $recipient
      * @return $this
      */
-    public function setRecipient(string $recipient)
+    public function setRecipient(string $recipient): SmsMessage
     {
         $this->_recipient = $recipient;
         return $this;
@@ -43,7 +44,7 @@ class SmsMessage
      * @param string $content
      * @return $this
      */
-    public function setContent(string $content)
+    public function setContent(string $content): SmsMessage
     {
         $this->_content = $content;
         return $this;

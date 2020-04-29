@@ -45,4 +45,34 @@ class Record extends Model
     {
         return date('m/d/Y H:i', strtotime($date));
     }
+
+    public function getTemperatureAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function getHasCoughAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function getHasHardBreathAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function getHasSoreThroatAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function getHasDiarrheaAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function getHasTirednessAttribute($value)
+    {
+        return decrypt($value);
+    }
 }

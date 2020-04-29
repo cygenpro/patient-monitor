@@ -25,45 +25,36 @@ class VerificationCode
     /**
      * @param string $code
      * @return bool
+     * @throws \Exception
      */
     public static function verify( string $code ): bool
     {
-        $verificationCode = \App\VerificationCode::where('user_id', Auth::id())
-            ->where('code', $code)
-            ->first();
+        $verificationCodes = \App\VerificationCode::where('user_id', Auth::id())->get();
 
-        if(is_null($verificationCode))
+        $match = false;
+
+        foreach ($verificationCodes as $verificationCode)
         {
-            return false;
+            $decryptedCode = $verificationCode->code;
+            if( $decryptedCode == $code )
+            {
+                if( !self::isDateExpired($verificationCode->updated_at) )
+                {
+                    $match = true;
+                }
+            }
         }
 
-        Auth::user()->update([
-            'phone_verified_at' => date('Y-m-d H:i:s')
-        ]);
+        if($match)
+        {
+            Auth::user()->update([
+                'phone_verified_at' => date('Y-m-d H:i:s')
+            ]);
+        }
 
-        return true;
+        return $match;
     }
 
-    /**
-     * @param string $code
-     * @return \App\VerificationCode|null
-     */
-    public static function getVerificationCode( string $code ): ?\App\VerificationCode
-    {
-        return \App\VerificationCode::where('user_id', Auth::id())
-            ->where('code', $code)
-            ->first();
-    }
-
-    /**
-     * @param \App\VerificationCode $verificationCode
-     * @return bool
-     * @throws \Exception
-     */
-    public static function isExpired( \App\VerificationCode $verificationCode ): bool
-    {
-        return self::isDateExpired($verificationCode->updated_at);
-    }
 
     /**
      * @param string $date

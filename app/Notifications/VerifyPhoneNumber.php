@@ -2,9 +2,9 @@
 
 namespace App\Notifications;
 
-use App\Channels\TwilioSms;
+
 use App\Notifications\Messages\SmsMessage;
-use App\Traits\ToTwilioSms;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -17,7 +17,7 @@ class VerifyPhoneNumber extends Notification
     /**
      * @var string
      */
-    private $_verificationCode;
+    private string $_verificationCode;
 
     /**
      * VerifyPhoneNumber constructor.
@@ -36,14 +36,14 @@ class VerifyPhoneNumber extends Notification
      */
     public function via($notifiable)
     {
-        return [TwilioSms::class];
+        return [\App\Channels\TwilioSms::class];
     }
 
     /**
      * @param $notifiable
      * @return SmsMessage
      */
-    public function toTwilioSms($notifiable)
+    public function toTwilioSms(User $notifiable): SmsMessage
     {
         return (new SmsMessage())
             ->setContent("Your account verification code is {$this->_verificationCode}")

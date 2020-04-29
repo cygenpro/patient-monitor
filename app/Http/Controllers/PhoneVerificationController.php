@@ -7,6 +7,7 @@ use App\Http\Requests\VerifyPhoneRequest;
 use App\Services\VerificationCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PhoneVerificationController extends Controller
@@ -35,28 +36,14 @@ class PhoneVerificationController extends Controller
      */
     public function verify(VerifyPhoneRequest $request)
     {
-        $code = $request->get('code');
+        $code = $request->input('code');
 
-        $verificationCode = VerificationCode::getVerificationCode( $code );
-
-        if( !$verificationCode )
-        {
-            return back()->withErrors('Invalid code.');
-        }
-
-        $isExpired = VerificationCode::isExpired($verificationCode);
-
-        if( $isExpired )
-        {
-            return back()->withErrors( 'Sorry, the code you have entered is expired.');
-        }
-
-        if( VerificationCode::verify($code) )
+        if( VerificationCode::verify( $code) )
         {
             return redirect(route('home'));
         }
 
-        return back()->withErrors( 'Something went wrong.');
+        return back()->withErrors( 'Sorry, the code you have entered is invalid or expired.');
     }
 
     /**

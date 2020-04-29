@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Notifications\VerifyPhoneNumber;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class SendPhoneVerificationCode
 {
@@ -26,15 +27,19 @@ class SendPhoneVerificationCode
      */
     public function handle($event)
     {
-        $verificationCode = \App\VerificationCode::create([
-            'user_id' => $event->user->id,
-            'code' => \App\Services\VerificationCode::generate(),
-            'expiration_date' => date(
-                'Y-m-d H:i:s',
-                strtotime("+2 minutes", strtotime(date('Y-m-d H:i:s')))
-            )
-        ]);
+        try {
+            $verificationCode = \App\VerificationCode::create([
+                'user_id' => $event->user->id,
+                'code' => encrypt(\App\Services\VerificationCode::generate()),
+                'expiration_date' => date(
+                    'Y-m-d H:i:s',
+                    strtotime("+2 minutes", strtotime(date('Y-m-d H:i:s')))
+                )
+            ]);
 
-        $event->user->notify( new VerifyPhoneNumber($verificationCode->code) );
+            $event->user->notify( new VerifyPhoneNumber($verificationCode->code) );
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+        }
     }
 }
