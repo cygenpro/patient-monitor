@@ -1,0 +1,11 @@
+name,phone,role_id,phone_verified_at,password
+John Smith,"+0123456789",2,2020-04-10 0:00:00,John123
+Duane Jones,"+0223456789",2,2020-04-10 0:00:00,Duane223
+Mathew Mcdonald,"+0323456789",2,2020-04-10 0:00:00,Mathew323
+Jason Miller,"+0423456789",2,2020-04-10 0:00:00,Jason423
+Steve Rodriguez,"+0523456789",2,2020-04-10 0:00:00,Steve523
+Dr. Kevin Young,"+0623456789",1,2020-04-10 0:00:00,Kevin623
+Dr. Larry King,"+0723456789",1,2020-04-10 0:00:00,Larry723
+Dr. Ronald Clark,"+0823456789",1,2020-04-10 0:00:00,Ronald823
+Dr. Peter Hall,"+0923456789",1,2020-04-10 0:00:00,Peter923
+Dr. Mark Martinez,"+0103456789",1,2020-04-10 0:00:00,Mark103

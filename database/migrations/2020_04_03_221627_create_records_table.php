@@ -17,12 +17,12 @@ class CreateRecordsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('from_id');
             $table->unsignedBigInteger('to_id');
-            $table->float('temperature');
-            $table->boolean('has_cough')->default(false);
-            $table->boolean('has_hard_breath')->default(false);
-            $table->boolean('has_sore_throat')->default(false);
-            $table->boolean('has_diarrhea')->default(false);
-            $table->boolean('has_tiredness')->default(false);
+            $table->string('temperature', 700);
+            $table->string('has_cough', 700);
+            $table->string('has_hard_breath', 700);
+            $table->string('has_sore_throat', 700);
+            $table->string('has_diarrhea', 700);
+            $table->string('has_tiredness', 700);
             $table->timestamps();
             $table->softDeletes();
 
