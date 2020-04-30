@@ -18,7 +18,37 @@ export const store = new Vuex.Store({
             return state.doctors;
         },
         getRecords: state => {
-            return state.records;
+            let columns = [
+                {label: 'Temperature', field: 'temperature', align: 'center'},
+                {label: 'Cough', field: 'has_cough', align: 'center'},
+                {label: 'Hard Breath', field: 'has_hard_breath', align: 'center'},
+                {label: 'Sore throat', field: 'has_sore_throat', align: 'center'},
+                {label: 'Diarrhea', field: 'has_diarrhea', align: 'center'},
+                {label: 'Tiredness', field: 'has_tiredness', align: 'center'},
+                {label: 'Created at', field: 'created_at', align: 'center'},
+            ];
+
+            let rows = [];
+
+            let plus = '+',
+                minus = '-';
+
+            state.records.forEach(function (item, index) {
+                rows.push({
+                    temperature: item.temperature,
+                    has_cough: parseInt(item.has_cough) ? plus: minus,
+                    has_hard_breath: parseInt(item.has_hard_breath) ? plus : minus,
+                    has_sore_throat: parseInt(item.has_sore_throat) ? plus : minus,
+                    has_diarrhea: parseInt(item.has_diarrhea) ? plus : minus,
+                    has_tiredness: parseInt(item.has_tiredness) ? plus : minus,
+                    created_at: item.created_at
+                })
+            });
+
+            return {
+                "columns" : columns,
+                "rows" : rows
+            }
         },
         getChartData: state => {
             let data = {
@@ -42,23 +72,23 @@ export const store = new Vuex.Store({
                data.temperature.labels.unshift(item.created_at);
                data.temperature.values.unshift(item.temperature);
 
-               if(item.has_cough) {
+               if(parseInt(item.has_cough)) {
                    data.symptoms.values.cough++;
                }
 
-               if(item.has_hard_breath) {
+               if(parseInt(item.has_hard_breath)) {
                    data.symptoms.values.hard_breath++;
                }
 
-               if(item.has_sore_throat) {
+               if(parseInt(item.has_sore_throat)) {
                    data.symptoms.values.sore_throat++;
                }
 
-               if(item.has_diarrhea) {
+               if(parseInt(item.has_diarrhea)) {
                    data.symptoms.values.diarrhea++;
                }
 
-               if(item.has_tiredness) {
+               if(parseInt(item.has_tiredness)) {
                    data.symptoms.values.tiredness++;
                }
             });
@@ -89,6 +119,9 @@ export const store = new Vuex.Store({
         },
         setDoctorRequest: (state, payload) => {
             state.doctorRequest = payload;
+        },
+        appendRecord: (state, payload) => {
+            state.records.unshift(payload);
         }
     },
     actions: {
@@ -104,5 +137,8 @@ export const store = new Vuex.Store({
         setDoctorRequest: ({commit}, payload) => {
             commit('setDoctorRequest', payload.doctorRequest);
         },
+        appendRecord: ({commit}, payload) => {
+            commit('appendRecord', payload.record);
+        }
     }
 });

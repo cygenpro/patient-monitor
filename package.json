@@ -28,6 +28,7 @@
         "font-awesome": "^4.7.0",
         "vue-chartjs": "^3.5.0",
         "vue-router": "^3.1.6",
+        "vuejs-datatable": "^2.0.0-alpha.7",
         "vuex": "^3.1.3"
     }
 }

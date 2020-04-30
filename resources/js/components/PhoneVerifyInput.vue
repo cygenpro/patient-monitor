@@ -2,7 +2,7 @@
     <div class="form-row mb-2">
         <p class="mb-1">
             Please check your phone, enter the verification code below and click the "Verify" button.
-            <br>If you have not received the code, <span class="text-primary text-link" v-on:click="resend">click here</span> to resend.
+            <br>If you have not received the code, <span class="text-primary cursor-pointer" v-on:click="resend">click here</span> to resend.
         </p>
         <p class="text-info">
             {{ message }}

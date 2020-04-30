@@ -1,51 +1,66 @@
 <template>
     <div class="col-10 table-responsive">
-        <table class="table table-striped text-center" id="records-table">
-            <thead class="bg-success text-light">
-                <tr>
-                    <th scope="col">Temperature</th>
-                    <th scope="col">Cough</th>
-                    <th scope="col">Hard Breath</th>
-                    <th scope="col">Sore throat</th>
-                    <th scope="col">Diarrhea</th>
-                    <th scope="col">Tiredness</th>
-                    <th scope="col">Created at</th>
-                </tr>
-            </thead>
-            <tbody v-if="records.length">
-                <tr v-for="record in records">
-                    <td><span :class="record.temperature > 37 ? 'text-danger' :'text-success'"><strong>{{ record.temperature }}</strong></span></td>
-                    <td><i :class="!record.has_cough ? 'fa fa-minus text-success' : 'fa fa-plus text-danger'"></i></td>
-                    <td><i :class="!record.has_hard_breath ? 'fa fa-minus text-success' : 'fa fa-plus text-danger'"></i></td>
-                    <td><i :class="!record.has_sore_throat ? 'fa fa-minus text-success' : 'fa fa-plus text-danger'"></i></td>
-                    <td><i :class="!record.has_diarrhea ? 'fa fa-minus text-success' : 'fa fa-plus text-danger'"></i></td>
-                    <td><i :class="!record.has_tiredness ? 'fa fa-minus text-success' : 'fa fa-plus text-danger'"></i></td>
-                    <td>{{ record.created_at }}</td>
-                </tr>
-            </tbody>
-            <tbody v-else>
-                <tr>
-                    <td colspan="8" class="text-secondary">
-                        {{ this.no_record_message }} <i class="fa fa-exclamation text-danger"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <datatable :columns="columns" :data="rows" :per-page="5"></datatable>
+        <datatable-pager v-model="page" type="abbreviated"></datatable-pager>
     </div>
 </template>
 
 <script>
+    import Vue from 'vue';
+    import { VuejsDatatableFactory } from 'vuejs-datatable';
+
+    Vue.use( VuejsDatatableFactory );
+
+    VuejsDatatableFactory.useDefaultType( false )
+        .registerTableType( 'datatable', tableType => tableType.mergeSettings( {
+            table: {
+                class:   'table table-hover table-striped text-left',
+                sorting: {
+                    sortAsc:  '<i class="fa fa-sort-amount-asc" title="Sort ascending"></i>',
+                    sortDesc: '<i class="fa fa-sort-amount-desc" title="Sort descending"></i>',
+                    sortNone: '<i class="fa fa-sort" title="Sort"></i>',
+                },
+            },
+            pager: {
+                classes: {
+                    pager:    'pagination text-center',
+                    selected: 'active',
+                },
+                icons: {
+                    next:     '<i class="fa fa-chevron-right" title="Next page"></i>',
+                    previous: '<i class="fa fa-chevron-left" title="Previous page"></i>',
+                },
+            },
+        } ) );
+
     export default {
         name: "PatientRecords",
-        props: ['no_record_message'],
+        data() {
+            return {
+                columns: this.$store.getters.getRecords.columns,
+            }
+        },
         computed: {
-            records() {
-                return this.$store.getters.getRecords
+            rows() {
+                return this.$store.getters.getRecords.rows;
             }
         }
     }
 </script>
 
-<style scoped>
+<style>
+    thead {
+        background: #38c172;
+        color: #fff;
+    }
 
+    .pagination li {
+        margin: 5px;
+        padding: 5px 10px;
+    }
+
+    .pagination li.active {
+        background: #3490dc;
+        color: #fff;
+    }
 </style>

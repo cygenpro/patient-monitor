@@ -36,6 +36,21 @@ class RecordRepository
     }
 
     /**
+     * @param int $doctorId
+     * @param int $patientId
+     * @return Collection
+     */
+    public function getNotSeenByDoctorAndPatientId(int $doctorId, int $patientId): Collection
+    {
+        return $this->_model
+            ->where('to_id', $doctorId)
+            ->where('from_id', $patientId)
+            ->whereNull('seen_at')
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
+
+    /**
      * @param array $data
      * @param int|null $recordId
      * @return Record|null
@@ -57,5 +72,21 @@ class RecordRepository
         }
 
         return $model;
+    }
+
+    /**
+     * @param int $doctorId
+     * @param int $patientId
+     * @return int
+     */
+    public function updateSeenAtByDoctorAndPatientIds(int $doctorId, int $patientId): int
+    {
+        return $this->_model
+            ->where('to_id', $doctorId)
+            ->where('from_id', $patientId)
+            ->whereNull('seen_at')
+            ->update([
+                'seen_at' => date('Y-m-d H:i:s')
+            ]);
     }
 }

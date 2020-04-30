@@ -23,6 +23,7 @@ Route::post('/verify-phone/resend', 'PhoneVerificationController@resend')->name(
 
 Route::group(['prefix' => 'doctor'], function () {
     Route::get('/patient/{patient}', 'Doctor\PatientController@show');
+    Route::get('/patient/{patient}/new-records', 'Doctor\PatientController@newRecords');
     Route::post('/add-patient', 'Doctor\PatientController@addPatient');
 });
 

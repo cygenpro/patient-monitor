@@ -25,7 +25,8 @@ class Record extends Model
         'has_hard_breath',
         'has_sore_throat',
         'has_diarrhea',
-        'has_tiredness'
+        'has_tiredness',
+        'seen_at'
     ];
 
     /**
@@ -46,31 +47,55 @@ class Record extends Model
         return date('m/d/Y H:i', strtotime($date));
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     public function getTemperatureAttribute($value)
     {
         return decrypt($value);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     public function getHasCoughAttribute($value)
     {
         return decrypt($value);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     public function getHasHardBreathAttribute($value)
     {
         return decrypt($value);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     public function getHasSoreThroatAttribute($value)
     {
         return decrypt($value);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     public function getHasDiarrheaAttribute($value)
     {
         return decrypt($value);
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     */
     public function getHasTirednessAttribute($value)
     {
         return decrypt($value);

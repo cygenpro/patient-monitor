@@ -23,6 +23,7 @@ class CreateRecordsTable extends Migration
             $table->string('has_sore_throat', 700);
             $table->string('has_diarrhea', 700);
             $table->string('has_tiredness', 700);
+            $table->timestamp('seen_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -43,6 +44,7 @@ class CreateRecordsTable extends Migration
             $table->index('created_at');
             $table->index('updated_at');
             $table->index('deleted_at');
+            $table->index('seen_at');
         });
     }
 

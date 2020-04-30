@@ -54,6 +54,8 @@ class PatientController extends Controller
     {
         $records = $this->_recordRepo->getByDoctorAndPatientIds( Auth::id(), $patientId );
 
+        $this->_recordRepo->updateSeenAtByDoctorAndPatientIds(Auth::id(), $patientId);
+
         return response()->json([
             'records' => $records
         ], 200);
@@ -104,5 +106,20 @@ class PatientController extends Controller
                 'message' => 'Something went wrong'
             ], 501);
         }
+    }
+
+    /**
+     * @param $patientId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function newRecords($patientId)
+    {
+        $records = $this->_recordRepo->getNotSeenByDoctorAndPatientId(Auth::id(), $patientId);
+
+        $this->_recordRepo->updateSeenAtByDoctorAndPatientIds(Auth::id(), $patientId);
+
+        return response()->json([
+            'records' => $records
+        ]);
     }
 }

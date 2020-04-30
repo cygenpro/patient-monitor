@@ -12,7 +12,6 @@
                     {{ patient.name }}
                 </RouterLink>
             </li>
-
         </ul>
         <div v-else>
             <p class="text-center">No patients added yet.</p>
