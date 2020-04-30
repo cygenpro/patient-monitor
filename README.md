@@ -36,6 +36,12 @@ Developed for Twilio Dev.to Hackathon
 - Clone the project
 - If you want to use docker - build containers and create a database inside the mysql container. Also add `patient-monitor.local` host to your hosts file.
 - Copy and rename the `.env.example` to `.env`,  make sure to update database configs, and Twilio account credentials.
+- Add Twilio account credentials to your .env file  
+```
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_FROM_NUMBER=
+```
 - Run `composer install` to install Laravel dependencies.
 - Run `npm install` to install front-end dependencies.
 - Run `php artisan key:generate` to generate the APP_KEY environment variable.
