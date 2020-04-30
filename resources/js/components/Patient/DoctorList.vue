@@ -1,5 +1,5 @@
 <template>
-    <div class="col-2">
+    <div class="col-md-2 col-12 mb-2">
         <doctor-request></doctor-request>
         <h3>Doctors
             <RouterLink v-if="doctors.length" :to="this.newRecordRoute()">

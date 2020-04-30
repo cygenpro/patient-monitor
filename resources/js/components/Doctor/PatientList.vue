@@ -1,5 +1,5 @@
 <template>
-    <div class="col-2">
+    <div class="col-md-2 col-12 mb-2">
         <h3>Your Patients
             <RouterLink to="/add-patient">
                 <button class="btn btn-outline-success  mb-3 float-right">Add New <i class="fa fa-plus"></i></button>

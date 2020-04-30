@@ -45,8 +45,21 @@
             }
         },
         created() {
-            if(this.$route.params.id !== undefined) {
-                this.updateRecords(this.$route.params.id);
+            let patientId = this.$route.params.id;
+
+            if(patientId) {
+                this.updateRecords(patientId);
+
+                setInterval(() => {
+                    axios.get('/patient/pending-request')
+                        .then((response) => {
+                            if(response.data.doctorRequest) {
+                                this.$store.dispatch('setDoctorRequest', {
+                                    doctorRequest: response.data.doctorRequest
+                                })
+                            }
+                        })
+                }, 7000);
             }
         }
     }

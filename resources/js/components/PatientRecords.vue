@@ -1,5 +1,5 @@
 <template>
-    <div class="col-10 table-responsive">
+    <div class="col-md-10 col-12 table-responsive">
         <datatable :columns="columns" :data="rows" :per-page="5"></datatable>
         <datatable-pager v-model="page" type="abbreviated"></datatable-pager>
     </div>

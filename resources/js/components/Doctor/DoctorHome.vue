@@ -41,13 +41,6 @@
                             records: response.data.records
                         })
                     })
-            }
-        },
-        created() {
-            let patientId = this.$route.params.id;
-
-            if(patientId) {
-                this.updateRecords(patientId);
 
                 setInterval(() => {
                     axios.get('/doctor/patient/'+patientId+'/new-records')
@@ -61,6 +54,13 @@
                             }
                         })
                 }, 5000);
+            }
+        },
+        created() {
+            let patientId = this.$route.params.id;
+
+            if(patientId) {
+                this.updateRecords(patientId);
             }
         }
     }
