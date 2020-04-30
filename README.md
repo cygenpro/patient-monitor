@@ -2,6 +2,8 @@
 
 Link to the project: http://patient-monitor.codebot.pro/
 
+Demo credentials: http://patient-monitor.codebot.pro/demo-credentials.pdf
+
 ### About
 
 A simple dashboard designed for both doctors and patients.
