@@ -26,10 +26,11 @@ Developed for Twilio Dev.to Hackathon
 - MySQL/MariaDB
 - Twuilio account
 
-## Frameworks used
+## Frameworks/Libs used
 - Laravel 7
 - Vue.js 2
 - Bootstrap 4
+- Chart.js
 
 ### Local development
 
